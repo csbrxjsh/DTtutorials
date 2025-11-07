@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Picker Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    #colorPicker {
+      margin-bottom: 20px;
+    }
+
+    #colorTarget {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    #textDiv {
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    #imageBox {
+      width: 200px;
+      height: 200px;
+      border: 2px dashed #aaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎨 Pick a Color</h2>
+  <input type="color" id="colorPicker" value="#3498db">
+  <button onclick="applyColor()">Apply Color</button>
+
+  <p id="colorTarget">This paragraph text will change color.</p>
+
+  <div id="textDiv">This is a &lt;div&gt; whose text will change color.</div>
+
+  <div id="imageBox">
+    <img id="image" src="https://via.placeholder.com/150" alt="Placeholder" />
+  </div>
+
+  <script>
+    function applyColor() {
+      const color = document.getElementById('colorPicker').value;
+
+      // a. Change background color
+      document.body.style.backgroundColor = color;
+
+      // b. Change paragraph text color
+      document.getElementById('colorTarget').style.color = color;
+
+      // c. Change <div> text color
+      document.getElementById('textDiv').style.color = color;
+
+      // d. Replace image with a colored box
+      const imageBox = document.getElementById('imageBox');
+      const image = document.getElementById('image');
+      image.style.display = 'none';
+      imageBox.style.backgroundColor = color;
+    }
+  </script>
+
+</body>
+</html>
