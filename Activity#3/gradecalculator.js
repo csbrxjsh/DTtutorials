@@ -26,5 +26,13 @@ function calculateGrade() {
 
       document.getElementById("average").textContent = average.toFixed(2);
       document.getElementById("remarks").textContent = remarks;
-      document.getElementById("calculateBtn").addEventListener("click", function() {});
     }
+
+// Attach a single click handler after DOM is ready. This prevents adding listeners repeatedly
+// and avoids relying on inline `onclick` attributes.
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('calculateBtn');
+  if (btn) {
+    btn.addEventListener('click', calculateGrade);
+  }
+});
