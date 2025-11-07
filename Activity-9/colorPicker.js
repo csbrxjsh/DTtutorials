@@ -1,20 +1,27 @@
-// Background color change
-document.getElementById('bgColorPicker').addEventListener('input', function () {
-  document.body.style.backgroundColor = this.value;
-});
+window.addEventListener('DOMContentLoaded', () => {
+  // Background color change
+  document.getElementById('bgColorPicker').addEventListener('input', (e) => {
+    document.body.style.backgroundColor = e.target.value;
+  });
 
-// Paragraph text color change
-document.getElementById('textColorPicker').addEventListener('input', function () {
-  document.getElementById('paragraph').style.color = this.value;
-});
+  // Paragraph color change
+  document.getElementById('textColorPicker').addEventListener('input', (e) => {
+    document.getElementById('paragraph').style.color = e.target.value;
+  });
 
-// Change div text
-document.getElementById('changeTextBtn').addEventListener('click', function () {
-  document.getElementById('content-box').textContent = 'The content has been updated!';
-});
+  // Modify div content
+  document.getElementById('changeTextBtn').addEventListener('click', () => {
+    const userInput = prompt('Enter new content for the div:');
+    if (userInput !== null && userInput.trim() !== '') {
+      document.getElementById('content-box').textContent = userInput;
+    }
+  });
 
-// Replace image
-document.getElementById('changeImageBtn').addEventListener('click', function () {
-  const newImageUrl = 'https://via.placeholder.com/300x200/ff7f7f/333333?text=New+Image';
-  document.getElementById('mainImage').src = newImageUrl;
+  // Replace image
+  document.getElementById('changeImageBtn').addEventListener('click', () => {
+    const newImageUrl = prompt('Enter the URL of the new image:');
+    if (newImageUrl !== null && newImageUrl.trim() !== '') {
+      document.getElementById('mainImage').src = newImageUrl;
+    }
+  });
 });

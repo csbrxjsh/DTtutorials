@@ -3,16 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Color Picker</title>
+  <title>Interactive Page</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       transition: background-color 0.3s ease;
-    }
-
-    h1 {
-      text-align: center;
     }
 
     .controls {
@@ -44,12 +40,13 @@
     button {
       padding: 10px 15px;
       font-size: 1rem;
+      margin-right: 10px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>Color Picker</h1>
+  <h1>Color Picker & Content Modifier</h1>
 
   <div class="controls">
     <label for="bgColorPicker">Background Color:</label>
@@ -69,7 +66,7 @@
   </div>
   <button id="changeImageBtn">Replace Image</button>
 
+  <!-- ✅ Make sure this path is correct -->
   <script src="colorPicker.js"></script>
 </body>
 </html>
-
