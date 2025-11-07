@@ -1,19 +1,20 @@
-function applyColor() {
-  const color = document.getElementById('colorPicker').value;
+// Background color change
+document.getElementById('bgColorPicker').addEventListener('input', function () {
+  document.body.style.backgroundColor = this.value;
+});
 
-  // a. Change background color
-  document.body.style.backgroundColor = color;
+// Paragraph text color change
+document.getElementById('textColorPicker').addEventListener('input', function () {
+  document.getElementById('paragraph').style.color = this.value;
+});
 
-  // b. Change paragraph text color
-  document.getElementById('colorTarget').style.color = color;
+// Change div text
+document.getElementById('changeTextBtn').addEventListener('click', function () {
+  document.getElementById('content-box').textContent = 'The content has been updated!';
+});
 
-  // c. Change <div> text color
-  document.getElementById('textDiv').style.color = color;
-
-  // d. Replace image with a colored box
-  const imageBox = document.getElementById('imageBox');
-  const image = document.getElementById('image');
-
-  image.style.display = 'none';
-  imageBox.style.backgroundColor = color;
-}
+// Replace image
+document.getElementById('changeImageBtn').addEventListener('click', function () {
+  const newImageUrl = 'https://via.placeholder.com/300x200/ff7f7f/333333?text=New+Image';
+  document.getElementById('mainImage').src = newImageUrl;
+});

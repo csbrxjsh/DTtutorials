@@ -1,87 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Enhanced Color Picker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Picker</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      padding: 30px;
-      transition: background-color 0.4s ease;
-    }
-
-    h2 {
-      color: #333;
-    }
-
-    #colorPicker {
-      margin-bottom: 20px;
-      padding: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      padding: 10px 16px;
-      font-size: 16px;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    button:hover {
-      background-color: #2980b9;
-    }
-
-    #colorTarget {
-      margin-top: 20px;
-      font-size: 18px;
-      transition: color 0.3s ease;
-    }
-
-    #textDiv {
-      margin-top: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      transition: color 0.3s ease;
-    }
-
-    #imageBox {
-      margin-top: 20px;
-      width: 200px;
-      height: 200px;
-      border: 2px dashed #aaa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-size: cover;
-      background-position: center;
+      font-family: Arial, sans-serif;
+      padding: 20px;
       transition: background-color 0.3s ease;
     }
 
-    #imageBox img {
+    h1 {
+      text-align: center;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    #paragraph {
+      font-size: 1.2rem;
+      margin: 20px 0;
+      transition: color 0.3s ease;
+    }
+
+    #content-box {
+      padding: 15px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    #image-area img {
       max-width: 100%;
-      max-height: 100%;
+      height: auto;
+      border: 2px solid #444;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+  <h1>Color Picker</h1>
 
-  <h2>🎨 Pick a Color</h2>
-  <input type="color" id="colorPicker" value="#3498db">
-  <button onclick="applyColor()">Apply Color</button>
+  <div class="controls">
+    <label for="bgColorPicker">Background Color:</label>
+    <input type="color" id="bgColorPicker" />
 
-  <p id="colorTarget">This paragraph text will change color.</p>
-
-  <div id="textDiv">This is a &lt;div&gt; whose text will change color.</div>
-
-  <div id="imageBox">
-    <img id="image" src="https://via.placeholder.com/150" alt="Placeholder" />
+    <label for="textColorPicker">Paragraph Color:</label>
+    <input type="color" id="textColorPicker" />
   </div>
 
-  <script src="colorPickerApp.js"></script>
+  <p id="paragraph">This is a sample paragraph. Change my color!</p>
+
+  <div id="content-box">Original content inside the div.</div>
+  <button id="changeTextBtn">Change Div Text</button>
+
+  <div id="image-area">
+    <img id="mainImage" src="https://via.placeholder.com/300x200" alt="Placeholder Image" />
+  </div>
+  <button id="changeImageBtn">Replace Image</button>
+
+  <script src="colorPicker.js"></script>
 </body>
 </html>
+
