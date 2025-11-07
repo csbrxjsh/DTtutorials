@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('paragraph').style.color = e.target.value;
   });
 
-  // Modify div content
+  // Modify div content with user input
   document.getElementById('changeTextBtn').addEventListener('click', () => {
     const userInput = prompt('Enter new content for the div:');
     if (userInput !== null && userInput.trim() !== '') {
@@ -17,11 +17,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Replace image
+  // Replace image with user-provided URL
   document.getElementById('changeImageBtn').addEventListener('click', () => {
     const newImageUrl = prompt('Enter the URL of the new image:');
     if (newImageUrl !== null && newImageUrl.trim() !== '') {
-      document.getElementById('mainImage').src = newImageUrl;
+      const img = document.getElementById('mainImage');
+      img.src = newImageUrl;
+      img.onerror = () => {
+        alert('⚠️ Image failed to load. Please check the URL.');
+        img.src = 'https://via.placeholder.com/300x200?text=Image+Error';
+      };
     }
   });
 });
