@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Record Manager</title>
+  <script src="studentRecord.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input {
+      margin: 5px;
+      padding: 5px;
+    }
+    button {
+      margin: 10px 0;
+      padding: 8px 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #d864ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Record Manager</h2>
+
+  <div>
+    <input type="text" id="firstName" placeholder="First Name">
+    <input type="text" id="middleName" placeholder="Middle Name">
+    <input type="text" id="lastName" placeholder="Last Name">
+    <input type="text" id="phone" placeholder="Phone">
+    <input type="text" id="address" placeholder="Address">
+    <button id="addBtn">Add Student</button>
+  </div>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Student rows will appear here -->
+    </tbody>
+  </table>
+</body>
+</html>
+</body>
+</html>
