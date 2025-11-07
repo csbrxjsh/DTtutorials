@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator with Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .calculator {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .display {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background: #2b6cb0;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2c5282;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <strong>Current Value:</strong> <span id="value">0</span>
+        </div>
+        <div class="display">
+            <strong>Operations:</strong> <span id="operations">0</span>
+        </div>
+        
+        <input type="number" id="input" placeholder="Enter a number">
+        
+        <div class="buttons">
+            <button onclick="handleOperation('add')">Add</button>
+            <button onclick="handleOperation('subtract')">Subtract</button>
+            <button onclick="handleOperation('multiply')">Multiply</button>
+            <button onclick="handleOperation('divide')">Divide</button>
+            <button onclick="handleReset()" style="grid-column: span 2">Reset</button>
+        </div>
+    </div>
+
+    <script src="calculatorWithCounter.js"></script>
+    <script>
+        const calculator = createCalculator(0);
+        const valueDisplay = document.getElementById('value');
+        const operationsDisplay = document.getElementById('operations');
+        const input = document.getElementById('input');
+
+        function updateDisplays() {
+            valueDisplay.textContent = calculator.getValue();
+            operationsDisplay.textContent = calculator.getOperationCount();
+        }
+
+        function handleOperation(op) {
+            const num = parseFloat(input.value);
+            if (isNaN(num)) {
+                alert('Please enter a valid number');
+                return;
+            }
+
+            try {
+                switch(op) {
+                    case 'add': calculator.add(num); break;
+                    case 'subtract': calculator.subtract(num); break;
+                    case 'multiply': calculator.multiply(num); break;
+                    case 'divide': calculator.divide(num); break;
+                }
+                updateDisplays();
+                input.value = '';
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+
+        function handleReset() {
+            calculator.reset();
+            updateDisplays();
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
