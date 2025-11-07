@@ -2,30 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Color Picker Demo</title>
+  <title>Enhanced Color Picker</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      transition: background-color 0.3s ease;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+      transition: background-color 0.4s ease;
+    }
+
+    h2 {
+      color: #333;
     }
 
     #colorPicker {
       margin-bottom: 20px;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
     }
 
     #colorTarget {
-      margin: 10px 0;
+      margin-top: 20px;
       font-size: 18px;
+      transition: color 0.3s ease;
     }
 
     #textDiv {
+      margin-top: 10px;
       padding: 10px;
       border: 1px solid #ccc;
-      margin-bottom: 20px;
+      font-size: 16px;
+      transition: color 0.3s ease;
     }
 
     #imageBox {
+      margin-top: 20px;
       width: 200px;
       height: 200px;
       border: 2px dashed #aaa;
@@ -34,6 +59,12 @@
       justify-content: center;
       background-size: cover;
       background-position: center;
+      transition: background-color 0.3s ease;
+    }
+
+    #imageBox img {
+      max-width: 100%;
+      max-height: 100%;
     }
   </style>
 </head>
@@ -51,26 +82,6 @@
     <img id="image" src="https://via.placeholder.com/150" alt="Placeholder" />
   </div>
 
-  <script>
-    function applyColor() {
-      const color = document.getElementById('colorPicker').value;
-
-      // a. Change background color
-      document.body.style.backgroundColor = color;
-
-      // b. Change paragraph text color
-      document.getElementById('colorTarget').style.color = color;
-
-      // c. Change <div> text color
-      document.getElementById('textDiv').style.color = color;
-
-      // d. Replace image with a colored box
-      const imageBox = document.getElementById('imageBox');
-      const image = document.getElementById('image');
-      image.style.display = 'none';
-      imageBox.style.backgroundColor = color;
-    }
-  </script>
-
+  <script src="colorPickerApp.js"></script>
 </body>
 </html>

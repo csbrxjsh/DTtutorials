@@ -13,6 +13,7 @@ function applyColor() {
   // d. Replace image with a colored box
   const imageBox = document.getElementById('imageBox');
   const image = document.getElementById('image');
+
   image.style.display = 'none';
   imageBox.style.backgroundColor = color;
 }

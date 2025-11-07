@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Character Counter App</title>
+  <title>Character Counter</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 30px;
-      background-color: #f4f4f4;
+      background-color: #f9f9f9;
+      max-width: 600px;
+      margin: auto;
     }
 
     h2 {
       color: #333;
+      text-align: center;
     }
 
     textarea {
@@ -28,6 +31,8 @@
     #counter {
       margin-top: 10px;
       font-weight: bold;
+      font-size: 16px;
+      text-align: right;
     }
 
     .limit-exceeded {
@@ -37,6 +42,7 @@
     label {
       display: block;
       margin-bottom: 5px;
+      font-weight: bold;
     }
 
     input[type="number"] {
@@ -58,6 +64,6 @@
 
   <div id="counter">Characters: 0 / 100</div>
 
-  <script src="characterCounter.js"></script>
+  <script src="characterCounterApp.js"></script>
 </body>
 </html>
