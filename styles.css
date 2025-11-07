@@ -1,0 +1,36 @@
+/* Basic site styles for DT Tutorials */
+:root{
+  --bg:#f7fafc;
+  --accent:#2b6cb0;
+  --muted:#6b7280;
+  --container-width:900px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:#111827;
+  line-height:1.4;
+}
+.container{
+  max-width:var(--container-width);
+  margin:0 auto;
+  padding:18px;
+}
+.site-header{
+  background:linear-gradient(90deg, rgba(43,108,176,0.95), rgba(59,130,246,0.9));
+  color:white;
+}
+.site-header h1{margin:0; padding:14px 0; font-size:1.6rem}
+.nav-list{list-style:none; margin:0; padding:0 0 14px 0; display:flex; gap:12px}
+.nav-list a{color:rgba(255,255,255,0.95); text-decoration:none; padding:6px 10px; border-radius:6px}
+.nav-list a:hover{background:rgba(255,255,255,0.08)}
+.hero{background:white; border-radius:8px; padding:18px; margin-top:18px; box-shadow:0 2px 6px rgba(2,6,23,0.06)}
+.site-footer{color:var(--muted); padding:12px 0; margin-top:22px; text-align:center}
+
+/* Responsive tweaks */
+@media (max-width:600px){
+  .nav-list{flex-direction:column}
+  .site-header h1{padding:12px}
+}
