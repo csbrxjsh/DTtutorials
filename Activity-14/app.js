@@ -48,6 +48,21 @@ typeEl.addEventListener('change', () => {
 });
 categoryEl.addEventListener('change', updateEndpointPreview);
 
+// On load: try to fetch static data to populate categories; fall back to defaults
+(async function initData() {
+  try {
+    const res = await fetch('data.json', { cache: 'no-store' });
+    if (res.ok) {
+      staticData = await res.json();
+    }
+  } catch (e) {
+    staticData = null;
+  }
+
+  // Populate categories based on current type selection
+  populateCategories(typeEl.value);
+})();
+
 // Try to load static data.json first (works on GitHub Pages). If not found, fall back to server API (api.php).
 async function generate() {
   errorEl.style.display = 'none';
