@@ -10,6 +10,9 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// Data store (populated from data.json if available)
+let staticData = null;
+
 // Update endpoint preview (show both options)
 function updateEndpointPreview() {
   const type = typeEl.value;
@@ -17,9 +20,33 @@ function updateEndpointPreview() {
   endpointEl.textContent = `data.json OR /api?type=${encodeURIComponent(type)}&category=${encodeURIComponent(category)}`;
 }
 
-typeEl.addEventListener('change', updateEndpointPreview);
+// Populate category select based on selected type and available data
+function populateCategories(type) {
+  // clear existing options
+  categoryEl.innerHTML = '';
+
+  const jokeKeys = staticData && staticData.jokes ? Object.keys(staticData.jokes) : ['general', 'programming', 'dad'];
+  const triviaKeys = staticData && staticData.trivia ? Object.keys(staticData.trivia) : ['science', 'history', 'geography', 'sports'];
+
+  const keys = type === 'joke' ? jokeKeys : triviaKeys;
+
+  keys.forEach(k => {
+    const opt = document.createElement('option');
+    opt.value = k;
+    opt.textContent = k.charAt(0).toUpperCase() + k.slice(1);
+    categoryEl.appendChild(opt);
+  });
+
+  // set category to first option
+  if (categoryEl.options.length) categoryEl.selectedIndex = 0;
+  updateEndpointPreview();
+}
+
+typeEl.addEventListener('change', () => {
+  populateCategories(typeEl.value);
+  updateEndpointPreview();
+});
 categoryEl.addEventListener('change', updateEndpointPreview);
-updateEndpointPreview();
 
 // Try to load static data.json first (works on GitHub Pages). If not found, fall back to server API (api.php).
 async function generate() {
