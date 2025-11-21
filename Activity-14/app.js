@@ -6,17 +6,22 @@ const answerEl = document.getElementById('answer');
 const errorEl = document.getElementById('error');
 const endpointEl = document.getElementById('endpoint');
 
-// Change endpoint preview on select change
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Update endpoint preview (show both options)
 function updateEndpointPreview() {
   const type = typeEl.value;
   const category = categoryEl.value;
-  endpointEl.textContent = `/api?type=${encodeURIComponent(type)}&category=${encodeURIComponent(category)}`;
+  endpointEl.textContent = `data.json OR /api?type=${encodeURIComponent(type)}&category=${encodeURIComponent(category)}`;
 }
+
 typeEl.addEventListener('change', updateEndpointPreview);
 categoryEl.addEventListener('change', updateEndpointPreview);
 updateEndpointPreview();
 
-// Fetch from API
+// Try to load static data.json first (works on GitHub Pages). If not found, fall back to server API (api.php).
 async function generate() {
   errorEl.style.display = 'none';
   resultEl.textContent = 'Loading...';
@@ -25,22 +30,51 @@ async function generate() {
   const type = typeEl.value;
   const category = categoryEl.value;
 
-  try {
-    const res = await fetch(`/api?type=${encodeURIComponent(type)}&category=${encodeURIComponent(category)}`);
-    if (!res.ok) throw new Error('Network error');
-    const data = await res.json();
-
+  // Helper to render result
+  function renderFromData(dataObj) {
     if (type === 'joke') {
-      resultEl.textContent = data.joke || 'No joke returned.';
+      const pool = (dataObj.jokes && dataObj.jokes[category]) ? dataObj.jokes[category] : dataObj.jokes.general;
+      resultEl.textContent = pickRandom(pool) || 'No joke available.';
       answerEl.textContent = '—';
     } else {
-      resultEl.textContent = data.question || 'No trivia question returned.';
-      answerEl.textContent = data.answer || '—';
+      const pool = (dataObj.trivia && dataObj.trivia[category]) ? dataObj.trivia[category] : dataObj.trivia.science;
+      const item = pickRandom(pool) || { q: 'No question available.', a: '—' };
+      resultEl.textContent = item.q;
+      answerEl.textContent = item.a || '—';
     }
+  }
+
+  // First attempt: fetch local data.json
+  try {
+    const res = await fetch('data.json', { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      renderFromData(data);
+      return;
+    }
+  } catch (e) {
+    // ignore and fall back to API
+  }
+
+  // Fallback: try server-side API (api.php) - requires PHP server
+  try {
+    const res2 = await fetch(`api.php?type=${encodeURIComponent(type)}&category=${encodeURIComponent(category)}`);
+    if (!res2.ok) throw new Error('Network error');
+    const data2 = await res2.json();
+
+    if (type === 'joke') {
+      resultEl.textContent = data2.joke || 'No joke returned.';
+      answerEl.textContent = '—';
+    } else {
+      resultEl.textContent = data2.question || 'No trivia question returned.';
+      answerEl.textContent = data2.answer || '—';
+    }
+    return;
   } catch (e) {
     resultEl.textContent = 'Click “Generate” to get a joke or trivia.';
     answerEl.textContent = '—';
     errorEl.style.display = 'block';
   }
 }
+
 btn.addEventListener('click', generate);
