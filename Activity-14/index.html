@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Joke & Trivia Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f1226;
+      --card: #171a33;
+      --accent: #6c7bff;
+      --text: #eaeaf7;
+      --muted: #a8a8c7;
+      --danger: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px; font-family: Inter, system-ui, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 30% 10%, #14173a, #0f1226);
+      color: var(--text);
+    }
+    header { text-align: center; margin-bottom: 20px; }
+    h1 { margin: 0 0 6px; font-size: 28px; }
+    p.subtitle { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .container {
+      max-width: 780px; margin: 24px auto; background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+
+    .controls {
+      display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; margin-bottom: 14px;
+    }
+    select, button {
+      padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12);
+      background: #111432; color: var(--text);
+      outline: none;
+    }
+    button {
+      background: var(--accent); border: none; font-weight: 600; cursor: pointer;
+      transition: transform .06s ease, filter .2s ease;
+    }
+    button:hover { filter: brightness(1.05); }
+    button:active { transform: translateY(1px); }
+
+    .row {
+      display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start;
+    }
+
+    .card {
+      background: #101335; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 14px; min-height: 72px;
+    }
+    .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .content { font-size: 16px; line-height: 1.6; word-wrap: break-word; }
+
+    .error {
+      margin-top: 8px; padding: 8px 10px; border-radius: 10px;
+      background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.35);
+      color: var(--danger); font-size: 13px; display: none;
+    }
+
+    .footer {
+      margin-top: 16px; display: flex; gap: 8px; justify-content: flex-end;
+    }
+    .small { font-size: 12px; color: var(--muted); }
+    .endpoint { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Joke & Trivia Generator</h1>
+    <p class="subtitle">Pick a type and category, then generate fresh content via your API.</p>
+  </header>
+
+  <div class="container">
+    <div class="controls">
+      <select id="type">
+        <option value="joke">Joke</option>
+        <option value="trivia">Trivia</option>
+      </select>
+
+      <select id="category">
+        <!-- Joke categories -->
+        <option value="general">General</option>
+        <option value="programming">Programming</option>
+        <option value="dad">Dad</option>
+        <!-- Trivia categories -->
+        <option value="science">Science</option>
+        <option value="history">History</option>
+        <option value="geography">Geography</option>
+        <option value="sports">Sports</option>
+      </select>
+
+      <button id="generate">Generate</button>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="label">Result</div>
+        <div id="result" class="content">Click “Generate” to get a joke or trivia.</div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="label">Answer (for trivia)</div>
+          <div id="answer" class="content small">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="error" class="error">Something went wrong. Please try again.</div>
+
+    <div class="footer small">
+      <span>API:</span>
+      <span id="endpoint" class="endpoint">/api?type=joke&category=general</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

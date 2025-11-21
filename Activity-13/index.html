@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Filter & Sort</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    select, input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    li {
+      background: #fff;
+      margin: 8px 0;
+      padding: 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .name {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .price {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product List</h1>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search product...">
+    <select id="sort">
+      <option value="name">Sort by Name</option>
+      <option value="price">Sort by Price</option>
+    </select>
+  </div>
+
+  <ul id="product-list"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
